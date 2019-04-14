@@ -14,7 +14,7 @@ namespace APISMARTHR1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" ,"value3","value4-dev"};
+            return new string[] { "value1", "value2" ,"value3","value4-dev-modified on server"};
         }
 
         // GET api/values/5
