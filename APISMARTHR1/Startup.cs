@@ -42,24 +42,24 @@ namespace APISMARTHR1
                         );
                 });
 
-            var connectionstring = Configuration["ConnectionStrings:APISMARTHR1DBConnectionString"];  
-            services.AddDbContext<APISMARTHR1.Entities.EmployerContext>(
-                                            options =>
-                                            options.UseSqlServer(connectionstring)
-                                            );
+            //var connectionstring = Configuration["ConnectionStrings:APISMARTHR1DBConnectionString"];  
+            //services.AddDbContext<APISMARTHR1.Entities.EmployerContext>(
+            //                                options =>
+            //                                options.UseSqlServer(connectionstring)
+            //                                );
 
-            services.AddScoped<IEmployer_Repo, Employer_Repo>();
+            //services.AddScoped<IEmployer_Repo, Employer_Repo>();
 
-            AutoMapper.Mapper.Initialize(cfg =>
-            { 
-                cfg.CreateMap<Entities.Employer, DTO.Employer.Employer_DTO>();
-            });
+            //AutoMapper.Mapper.Initialize(cfg =>
+            //{ 
+            //    cfg.CreateMap<Entities.Employer, DTO.Employer.Employer_DTO>();
+            //});
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-            EmployerContext employerContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+            //,EmployerContext employerContext)
         {
             app.UseStaticFiles();
 
