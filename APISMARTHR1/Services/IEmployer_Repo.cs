@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using APISMARTHR1.DTO.Employer;
+using APISMARTHR1.Entities;
 
 namespace APISMARTHR1.Services
 {
-    interface IEmployer_Repo
+    public interface IEmployer_Repo
     {
-        IEnumerable<Employer_DTO> GetEmployers();
+        IEnumerable<Employer> GetEmployers();
     }
 }

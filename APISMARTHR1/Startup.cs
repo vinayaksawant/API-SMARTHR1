@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using APISMARTHR1.Entities;
+using APISMARTHR1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -39,14 +42,24 @@ namespace APISMARTHR1
                         );
                 });
 
-            //services.AddDbContext<HRMS1.data.moels.DataContext>(options =>
-            //options.UseSqlServer("connectionstring"));
+            var connectionstring = Configuration["ConnectionStrings:APISMARTHR1DBConnectionString"];  
+            services.AddDbContext<APISMARTHR1.Entities.EmployerContext>(
+                                            options =>
+                                            options.UseSqlServer(connectionstring)
+                                            );
 
-            //services.AddScoped<IEmployer_REp>
+            services.AddScoped<IEmployer_Repo, Employer_Repo>();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            { 
+                cfg.CreateMap<Entities.Employer, DTO.Employer.Employer_DTO>();
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            EmployerContext employerContext)
         {
             app.UseStaticFiles();
 
@@ -58,7 +71,10 @@ namespace APISMARTHR1
             {
                 app.UseHsts();
             }
-            //app.UseCors("CorsPolicy");
+
+            //employerContext.EnsureSeedDataForContext();
+
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
 
             app.UseMvc();

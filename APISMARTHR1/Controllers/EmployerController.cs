@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using APISMARTHR1.Services;
 using Microsoft.AspNetCore.Hosting;
+using AutoMapper;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,20 +18,23 @@ namespace APISMARTHR1.Controllers
     public class EmployerController : Controller
     {
 
-        private readonly IHostingEnvironment _hostingEnvironment;
-        Employer_Repo rep;
+        private IEmployer_Repo rep;
 
-        public EmployerController(IHostingEnvironment hostingEnvironment)
+        public EmployerController(IEmployer_Repo employer_Repo)
         {
-            _hostingEnvironment = hostingEnvironment;
-            rep = new Employer_Repo(_hostingEnvironment);
+            rep = employer_Repo;
         }
 
         // GET: api/<controller>
         [HttpGet]
         public IEnumerable<Employer_DTO> Get()
         {
-            return rep.GetEmployers();
+            var employers_Entities = rep.GetEmployers();
+
+            var results = Mapper.Map<IEnumerable<Employer_DTO>>(employers_Entities);
+
+            return results;
+            //return Ok(results);
         }
 
         // GET api/<controller>/5
