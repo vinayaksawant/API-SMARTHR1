@@ -86,9 +86,6 @@ namespace APISMARTHR1
 
 			context.Employer.AddRange(employerList);
 			context.SaveChanges();
-
-
-
 		}
 	}
 }
