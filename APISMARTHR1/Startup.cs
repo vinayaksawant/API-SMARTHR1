@@ -54,7 +54,6 @@ namespace APISMARTHR1
             {
                 cfg.CreateMap<Entities.Employer, DTO.Employer.Employer_DTO>();
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
