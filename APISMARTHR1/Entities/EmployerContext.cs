@@ -15,9 +15,14 @@ namespace APISMARTHR1.Entities
             Database.Migrate();
         }
         public DbSet<Employer> Employer { get; set; }
-
         public DbSet<Benefit> Benefit { get; set; }
+        public DbSet<EventType> EventType { get; set; }
 
+        public DbSet<EmployerPlan> EmployerPlan { get; set; }
         public DbSet<Event> Event { get; set; }
+
+        public DbSet<LifeEvent> LifeEvent { get; set; }
+        public DbSet<CoverageEvent> CoverageEvent { get; set; }
+
     }
 }
