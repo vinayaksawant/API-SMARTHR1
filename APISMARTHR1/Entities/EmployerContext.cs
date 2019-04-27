@@ -24,5 +24,7 @@ namespace APISMARTHR1.Entities
         public DbSet<LifeEvent> LifeEvent { get; set; }
         public DbSet<CoverageEvent> CoverageEvent { get; set; }
 
+        public DbSet<Employee> Employee { get; set; }
+
     }
 }

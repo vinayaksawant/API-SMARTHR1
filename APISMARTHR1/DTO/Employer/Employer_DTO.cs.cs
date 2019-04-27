@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APISMARTHR1.DTO.Employer
+namespace APISMARTHR1.DTO
 {
     public class Employer_DTO
     {

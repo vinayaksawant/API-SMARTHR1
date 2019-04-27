@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using APISMARTHR1.DTO.Employer;
+using APISMARTHR1.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 using APISMARTHR1.Services;

@@ -18,6 +18,8 @@ namespace APISMARTHR1
 
             PopulateEmployerPlanData(context);
 
+            PopulateEmployeeData(context);
+
         }
 
         public static void PopulateEmployerData(this EmployerContext context)
@@ -333,5 +335,40 @@ namespace APISMARTHR1
             context.EmployerPlan.AddRange(employerPlanList);
             context.SaveChanges();
         }
+
+        public static void PopulateEmployeeData(this EmployerContext context)
+        {
+            if (context.Employee.Any())
+            {
+                return;
+            }
+            List<Employee> employeeList = new List<Employee>()
+            {
+                new Employee()
+                {
+                    EmployeeName = "john keep",
+                    EmployerID= 1,
+                },
+                new Employee()
+                {
+                    EmployeeName = "maggie mars",
+                    EmployerID= 1,
+                },
+                new Employee()
+                {
+                    EmployeeName = "churio frito",
+                    EmployerID= 2,
+                },
+                new Employee()
+                {
+                    EmployeeName = "yummy tummy",
+                    EmployerID= 2,
+                },
+            };
+            context.Employee.AddRange(employeeList);
+            context.SaveChanges();
+        }
+
+
     }
 }

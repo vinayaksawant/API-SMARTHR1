@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APISMARTHR1.DTO
+namespace APISMARTHR1.DTO.Employer
 {
-    public class Employer_CREATE_DTO
+    public class Employer_UPDATE_DTO
     {
         //Update-Create DTO will not take this ID 
         //It is database Identity
@@ -29,10 +29,9 @@ namespace APISMARTHR1.DTO
         public int EmployerRating { get; set; }
         public string EmployerImageUrl { get; set; }
 
-        public Employer_CREATE_DTO()
+        public Employer_UPDATE_DTO()
         {
 
         }
-
     }
 }

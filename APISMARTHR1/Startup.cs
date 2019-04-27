@@ -52,7 +52,7 @@ namespace APISMARTHR1
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Entities.Employer, DTO.Employer.Employer_DTO>();
+                cfg.CreateMap<Entities.Employer, DTO.Employer_DTO>();
             });
         }
 
