@@ -8,7 +8,6 @@ namespace APISMARTHR1.Entities
     public class CoverageEvent
     {
         public int CoverageEventID { get; set; }
-        public LifeEvent LifeEvent { get; set; }
         public EmployerPlan Plan { get; set; }
         public string PlanOptions { get; set; }
     }

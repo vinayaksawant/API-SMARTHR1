@@ -4,14 +4,16 @@ using APISMARTHR1.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APISMARTHR1.Migrations
 {
     [DbContext(typeof(EmployerContext))]
-    partial class EmployerContextModelSnapshot : ModelSnapshot
+    [Migration("20190428232040_Added_Address_AddressType")]
+    partial class Added_Address_AddressType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

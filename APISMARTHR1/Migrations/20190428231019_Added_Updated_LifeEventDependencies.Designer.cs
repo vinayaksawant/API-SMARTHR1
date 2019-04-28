@@ -4,74 +4,22 @@ using APISMARTHR1.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APISMARTHR1.Migrations
 {
     [DbContext(typeof(EmployerContext))]
-    partial class EmployerContextModelSnapshot : ModelSnapshot
+    [Migration("20190428231019_Added_Updated_LifeEventDependencies")]
+    partial class Added_Updated_LifeEventDependencies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("APISMARTHR1.Entities.Address", b =>
-                {
-                    b.Property<int>("AddressID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AddressTypeID");
-
-                    b.Property<int?>("BeneficiaryEventID");
-
-                    b.Property<int?>("DependentEventID");
-
-                    b.Property<int?>("EmployeeEventID");
-
-                    b.Property<string>("PostalAddress1");
-
-                    b.Property<string>("PostalAddress2");
-
-                    b.Property<string>("PostalAddressCity");
-
-                    b.Property<string>("PostalAddressCountry");
-
-                    b.Property<string>("PostalAddressState");
-
-                    b.Property<int>("PostalAddressZip");
-
-                    b.HasKey("AddressID");
-
-                    b.HasIndex("AddressTypeID");
-
-                    b.HasIndex("BeneficiaryEventID");
-
-                    b.HasIndex("DependentEventID");
-
-                    b.HasIndex("EmployeeEventID");
-
-                    b.ToTable("Address");
-                });
-
-            modelBuilder.Entity("APISMARTHR1.Entities.AddressType", b =>
-                {
-                    b.Property<int>("AddressTypeID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AddressTypeCode");
-
-                    b.Property<string>("AddressTypeDescription");
-
-                    b.HasKey("AddressTypeID");
-
-                    b.ToTable("AddressType");
-                });
 
             modelBuilder.Entity("APISMARTHR1.Entities.Beneficiary", b =>
                 {
@@ -113,6 +61,18 @@ namespace APISMARTHR1.Migrations
                     b.Property<DateTime>("DateOfBirth");
 
                     b.Property<int?>("LifeEventID");
+
+                    b.Property<string>("PostalAddress1");
+
+                    b.Property<string>("PostalAddress2");
+
+                    b.Property<string>("PostalAddressCity");
+
+                    b.Property<string>("PostalAddressCountry");
+
+                    b.Property<string>("PostalAddressState");
+
+                    b.Property<int>("PostalAddressZip");
 
                     b.Property<int?>("RelationshipID");
 
@@ -204,6 +164,18 @@ namespace APISMARTHR1.Migrations
 
                     b.Property<int?>("LifeEventID");
 
+                    b.Property<string>("PostalAddress1");
+
+                    b.Property<string>("PostalAddress2");
+
+                    b.Property<string>("PostalAddressCity");
+
+                    b.Property<string>("PostalAddressCountry");
+
+                    b.Property<string>("PostalAddressState");
+
+                    b.Property<int>("PostalAddressZip");
+
                     b.Property<int?>("RelationshipID");
 
                     b.HasKey("DependentEventID");
@@ -259,6 +231,18 @@ namespace APISMARTHR1.Migrations
                     b.Property<DateTime>("HireDate");
 
                     b.Property<int?>("LifeEventID");
+
+                    b.Property<string>("PostalAddress1");
+
+                    b.Property<string>("PostalAddress2");
+
+                    b.Property<string>("PostalAddressCity");
+
+                    b.Property<string>("PostalAddressCountry");
+
+                    b.Property<string>("PostalAddressState");
+
+                    b.Property<int>("PostalAddressZip");
 
                     b.Property<int?>("RelationshipID");
 
@@ -417,25 +401,6 @@ namespace APISMARTHR1.Migrations
                     b.HasKey("RelationshipID");
 
                     b.ToTable("Relationship");
-                });
-
-            modelBuilder.Entity("APISMARTHR1.Entities.Address", b =>
-                {
-                    b.HasOne("APISMARTHR1.Entities.AddressType", "AddressType")
-                        .WithMany()
-                        .HasForeignKey("AddressTypeID");
-
-                    b.HasOne("APISMARTHR1.Entities.BeneficiaryEvent")
-                        .WithMany("Address")
-                        .HasForeignKey("BeneficiaryEventID");
-
-                    b.HasOne("APISMARTHR1.Entities.DependentEvent")
-                        .WithMany("Address")
-                        .HasForeignKey("DependentEventID");
-
-                    b.HasOne("APISMARTHR1.Entities.EmployeeEvent")
-                        .WithMany("Address")
-                        .HasForeignKey("EmployeeEventID");
                 });
 
             modelBuilder.Entity("APISMARTHR1.Entities.Beneficiary", b =>

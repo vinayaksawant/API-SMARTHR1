@@ -346,22 +346,22 @@ namespace APISMARTHR1
             {
                 new Employee()
                 {
-                    EmployeeName = "john keep",
+                    EmployeeCode = "john_keep",
                     EmployerID= 1,
                 },
                 new Employee()
                 {
-                    EmployeeName = "maggie mars",
+                    EmployeeCode = "maggie_mars",
                     EmployerID= 1,
                 },
                 new Employee()
                 {
-                    EmployeeName = "churio frito",
+                    EmployeeCode = "churio_frito",
                     EmployerID= 2,
                 },
                 new Employee()
                 {
-                    EmployeeName = "yummy tummy",
+                    EmployeeCode = "yummy_tummy",
                     EmployerID= 2,
                 },
             };
