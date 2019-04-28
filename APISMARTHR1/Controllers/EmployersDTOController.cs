@@ -15,12 +15,12 @@ using AutoMapper;
 namespace APISMARTHR1.Controllers
 {
     [Route("api/[controller]")]
-    public class EmployerController : Controller
+    public class EmployersDTO : Controller
     {
 
         private IEmployer_Repo rep;
 
-        public EmployerController(IEmployer_Repo employer_Repo)
+        public EmployersDTO(IEmployer_Repo employer_Repo)
         {
             rep = employer_Repo;
         }
