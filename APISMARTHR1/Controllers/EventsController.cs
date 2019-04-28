@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APISMARTHR1.Entities;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace APISMARTHR1.Controllers
 {
@@ -36,7 +37,16 @@ namespace APISMARTHR1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var @event = await _context.Event.FindAsync(id);
+            /*Find() and FindAsync() are methods on type DbSet(which is what db.Items is).Include() 
+             * returns a DbQuery object, which is why FindAsync() is not available. 
+             * Use SingleOrDefaultAsync() to do the same thing as FindAsync()
+             * (the difference is it will go straight to the database 
+             * and won't look in the context to see if the entity exists first)...
+             */
+            //var @event = await _context.Event.FindAsync(id).Include(et => et.EventType);
+            var @event = await _context.Event
+                                        .Include(et => et.EventType)
+                                        .FirstOrDefaultAsync(i=>i.EventID == id);
 
             if (@event == null)
             {
@@ -61,6 +71,16 @@ namespace APISMARTHR1.Controllers
             }
 
             _context.Entry(@event).State = EntityState.Modified;
+
+            //_context.Attach(@event);
+
+            //IEnumerable<EntityEntry> unchangedEntities = _context.ChangeTracker.Entries()
+            //                                            .Where(x => x.State == EntityState.Unchanged);
+
+            //foreach (EntityEntry ee in unchangedEntities)
+            //{
+            //    ee.State = EntityState.Modified;
+            //}
 
             try
             {
