@@ -10,7 +10,10 @@
 			"variables": [],
 			"order": [
 				"fd15dc0e-0924-4d96-9b61-cd96457c4198",
-				"4049ee2c-2cd2-482d-8ec5-43a614c28117"
+				"4049ee2c-2cd2-482d-8ec5-43a614c28117",
+				"7df4903e-7d2e-4a5c-a23f-e47219e49388",
+				"bb832b9f-e11d-4b60-9c77-44d64974caf9",
+				"6b506f13-b1ab-4de3-b606-09c097787ef2"
 			],
 			"folders_order": [],
 			"folders": [],
@@ -18,7 +21,7 @@
 				{
 					"id": "4049ee2c-2cd2-482d-8ec5-43a614c28117",
 					"name": "EventsGetByID",
-					"url": "https://localhost:44373/api/Events/3",
+					"url": "https://localhost:44373/api/Events/4",
 					"description": "EventsGetByID",
 					"data": null,
 					"dataMode": null,
@@ -33,6 +36,93 @@
 					"helperAttributes": null,
 					"collectionId": "0e947d92-23cf-4b66-a093-db539725f6cd",
 					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "6b506f13-b1ab-4de3-b606-09c097787ef2",
+					"name": "EventsPOSTUniqueKeyViolation",
+					"url": "https://localhost:44373/api/Events",
+					"description": "EventsGetByID",
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"description": "",
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"type": "text",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "0e947d92-23cf-4b66-a093-db539725f6cd",
+					"rawModeData": "{\n    \"evntID\": null,\n    \"employerID\": 1,\n    \"eventType\": {\n\t    \"eventTypeID\": 3,\n\t    \"eventName\": \"OpenEnrollment\",\n\t    \"eventDescription\": \"OpenEnrollment Event\"\n    },\n    \"eventName\": \"EE1-EV3\",\n    \"eventDescription\": \"EE1 OpenEnrollment (EV3 updates back to EV3)\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "7df4903e-7d2e-4a5c-a23f-e47219e49388",
+					"name": "EventsPUT",
+					"url": "https://localhost:44373/api/Events/3",
+					"description": "EventsGetByID",
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"method": "PUT",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "0e947d92-23cf-4b66-a093-db539725f6cd",
+					"rawModeData": "{\n    \"eventID\": 3,\n    \"employerID\": 1,\n    \"eventType\": {\n\t    \"eventTypeID\": 3,\n\t    \"eventName\": \"OpenEnrollment\",\n\t    \"eventDescription\": \"OpenEnrollment Event\"\n    },\n    \"eventName\": \"EE1-EV3\",\n    \"eventDescription\": \"EE1 OpenEnrollment (EV3 updates back to EV3)\"\n}",
+					"headers": "Content-Type: application/json\n",
+					"pathVariables": {}
+				},
+				{
+					"id": "bb832b9f-e11d-4b60-9c77-44d64974caf9",
+					"name": "EventsPOST",
+					"url": "https://localhost:44373/api/Events",
+					"description": "EventsGetByID",
+					"data": [],
+					"dataMode": "raw",
+					"headerData": [
+						{
+							"description": "",
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"type": "text",
+							"value": "application/json"
+						}
+					],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "0e947d92-23cf-4b66-a093-db539725f6cd",
+					"rawModeData": "{\n    \"evntID\": null,\n    \"employerID\": 1,\n    \"eventType\": {\n        \"eventTypeID\": 4,\n        \"eventName\": \"Birth\",\n        \"eventDescription\": \"Birth Event\"\n    },\n    \"eventName\": \"EE1-EV3\",\n    \"eventDescription\": \"EE1 OpenEnrollment (New insert)\"\n}",
+					"headers": "Content-Type: application/json\n",
 					"pathVariables": {}
 				},
 				{
@@ -108,6 +198,62 @@
 					"currentHelper": null,
 					"helperAttributes": null,
 					"collectionId": "44ab90ae-5e57-47d5-b06f-1abb4d9b483a",
+					"headers": "",
+					"pathVariables": {}
+				}
+			]
+		},
+		{
+			"id": "51e39d5a-c0e0-402a-8a30-9c765e394a3d",
+			"name": "EventTypes",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"variables": [],
+			"order": [
+				"ad3ca22d-e065-47af-897a-85c6e638fd2b",
+				"8abb28f6-b166-4c38-9c74-5f96acea2a90"
+			],
+			"folders_order": [],
+			"folders": [],
+			"requests": [
+				{
+					"id": "8abb28f6-b166-4c38-9c74-5f96acea2a90",
+					"name": "EventTypesGetByID",
+					"url": "https://localhost:44373/api/EventTypes/3",
+					"description": "",
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "51e39d5a-c0e0-402a-8a30-9c765e394a3d",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "ad3ca22d-e065-47af-897a-85c6e638fd2b",
+					"name": "EventTypesGetAll",
+					"url": "https://localhost:44373/api/EventTypes",
+					"description": "",
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "51e39d5a-c0e0-402a-8a30-9c765e394a3d",
 					"headers": "",
 					"pathVariables": {}
 				}
@@ -323,7 +469,7 @@
 	],
 	"environments": [
 		{
-			"id": "cf0cf206-e1d0-4806-b35b-ebbb9ba8ff27",
+			"id": "0e405429-c28a-491a-a33a-9ebf9aae940e",
 			"name": "My Workspace - globals",
 			"values": []
 		}

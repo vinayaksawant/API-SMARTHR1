@@ -20,6 +20,15 @@ namespace APISMARTHR1.Entities
 
         public DbSet<EmployerPlan> EmployerPlan { get; set; }
         public DbSet<Event> Event { get; set; }
+        /*Handle uniqueness Criteria in code by checking 
+         *before insert or update. that way it will be easier
+         */
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Event>()
+        //        .HasIndex(e => new { e.EmployerID, e.EventType.EventTypeID })
+        //        .IsUnique(true);
+        //}
 
         public DbSet<LifeEvent> LifeEvent { get; set; }
         public DbSet<CoverageEvent> CoverageEvent { get; set; }

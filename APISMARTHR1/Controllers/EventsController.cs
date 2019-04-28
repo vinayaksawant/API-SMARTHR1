@@ -70,18 +70,24 @@ namespace APISMARTHR1.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(@event).State = EntityState.Modified;
 
-            //_context.Attach(@event);
+            if (_context.Event.Where(e => e.EmployerID == @event.EmployerID)
+                                .Where(et => et.EventType.EventTypeID == @event.EventType.EventTypeID)
+                                .Any()
+                                )
+            {
+                ModelState.AddModelError("DuplicateEntry", $"Combination of Employer {@event.EmployerID} and EventTypeID {@event.EventType.EventTypeID} Already Present");
+                return BadRequest(ModelState);
+            }
 
-            //IEnumerable<EntityEntry> unchangedEntities = _context.ChangeTracker.Entries()
-            //                                            .Where(x => x.State == EntityState.Unchanged);
-
-            //foreach (EntityEntry ee in unchangedEntities)
-            //{
-            //    ee.State = EntityState.Modified;
-            //}
-
+            //_context.Entry(@event).State = EntityState.Modified;
+            _context.Attach(@event);
+            IEnumerable<EntityEntry> unchangedEntities = _context.ChangeTracker.Entries()
+                                                        .Where(x => x.State == EntityState.Unchanged);
+            foreach (EntityEntry ee in unchangedEntities)
+            {
+                ee.State = EntityState.Modified;
+            }
             try
             {
                 await _context.SaveChangesAsync();
@@ -110,8 +116,27 @@ namespace APISMARTHR1.Controllers
                 return BadRequest(ModelState);
             }
 
+            if (_context.Event.Where(e => e.EmployerID == @event.EmployerID)
+                                .Where(et => et.EventType.EventTypeID == @event.EventType.EventTypeID)
+                                .Any()
+                                )
+            {
+                ModelState.AddModelError("DuplicateEntry", $"Combination of Employer {@event.EmployerID} and EventTypeID {@event.EventType.EventTypeID} Already Present");
+                return BadRequest(ModelState);
+            }
+
+
+            @event.EventType = _context.EventType.Find(@event.EventType.EventTypeID);
             _context.Event.Add(@event);
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
 
             return CreatedAtAction("GetEvent", new { id = @event.EventID }, @event);
         }
