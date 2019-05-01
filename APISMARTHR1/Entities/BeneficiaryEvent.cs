@@ -16,9 +16,9 @@ namespace APISMARTHR1.Entities
         public string BeneficiaryLastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Relationship Relationship { get; set; }
-        public IList<Address> Address { get; set; }
-        public string BeneficiaryEmail { get; set; }
-        public int BeneficiaryPhone { get; set; }
+        public IList<Address> BeneficiaryAddress { get; set; } = new List<Address>();
+        public IList<Email> BeneficiaryEmail { get; set; } = new List<Email>();
+        public IList<Phone> BeneficiaryPhone { get; set; } = new List<Phone>();
 
     }
 }

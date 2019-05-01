@@ -19,8 +19,8 @@ namespace APISMARTHR1.Entities
         public DateTime HireDate { get; set; }
         public DateTime TerminationDate { get; set; }
         public DateTime RetirementDate { get; set; }
-        public IList<Address> Address { get; set; }
-        public string EmployeeEmail { get; set; }
-        public int EmployeePhone { get; set; }
+        public IList<Address> EmployeeAddress { get; set; } = new List<Address>();
+        public IList<Email> EmployeeEmail { get; set; } = new List<Email>();
+        public IList<Phone> EmployeePhone { get; set; } = new List<Phone>();
     }
 }

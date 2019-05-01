@@ -19,8 +19,11 @@ namespace APISMARTHR1.Entities
         public DbSet<EventType> EventType { get; set; }
         public DbSet<Relationship> Relationship { get; set; }
         public DbSet<AddressType> AddressType { get; set; }
-
-
+        public DbSet<EmailType> EmailType { get; set; }
+        public DbSet<PhoneType> PhoneType { get; set; }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<Email> Email { get; set; }
+        public DbSet<Phone> Phone { get; set; }
 
         public DbSet<EmployerPlan> EmployerPlan { get; set; }
         public DbSet<Event> Event { get; set; }
@@ -31,7 +34,6 @@ namespace APISMARTHR1.Entities
         public DbSet<Dependent> Dependent { get; set; }
         public DbSet<Beneficiary> Beneficiary { get; set; }
 
-        public DbSet<Address> Address { get; set; }
         public DbSet<EmployeeEvent> EmployeeEvent { get; set; }
         public DbSet<DependentEvent> DependentEvent { get; set; }
         public DbSet<BeneficiaryEvent> BeneficiaryEvent { get; set; }

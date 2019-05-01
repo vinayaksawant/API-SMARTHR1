@@ -14,17 +14,16 @@ namespace APISMARTHR1.Entities
         public int EmployeeCount { get; set; }
         public int EmployerRevenue { get; set; }
         public Decimal BillingRate { get; set; }
-        public string PostalAddress1 { get; set; }
-        public string PostalAddress2 { get; set; }
-        public string PostalAddressCity { get; set; }
-        public string PostalAddressState { get; set; }
-        public int PostalAddressZip { get; set; }
-        public string PostalAddressCountry { get; set; }
-        public string EmployerEmail { get; set; }
-        public int EmployerPhone { get; set; }
-        public int EmployerFax { get; set; }
-        public string OriginCountryFlagImageUrl { get; set; }
+        public IList<Address> EmployerAddress { get; set; } = new List<Address>();
+        public IList<Email> EmployerEmail { get; set; } = new List<Email>();
+        public IList<Phone> EmployerPhone { get; set; } = new List<Phone>();
+        public string EmployerWebsite { get; set; }
         public string EmployerImageUrl { get; set; }
         public int EmployerRating { get; set; }
+        public string OriginCountryFlagImageUrl { get; set; }
+        public IList<Employee> Employee { get; set; } = new List<Employee>();
+        public IList<EmployerPlan> EmployerPlan { get; set; } = new List<EmployerPlan>();
+        public IList<Event> Event { get; set; } = new List<Event>();
+
     }
 }

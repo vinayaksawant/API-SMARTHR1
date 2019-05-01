@@ -10,15 +10,12 @@ namespace APISMARTHR1
 
         public static void EnsureSeedDataForContext(this EmployerContext context)
         {
-            PopulateEmployerData(context);
-            PopulateBenefitData(context);
-            PopulateEventTypeData(context);
-
-            PopulateEventData(context);
-
-            PopulateEmployerPlanData(context);
-
-            PopulateEmployeeData(context);
+            //PopulateEmployerData(context);
+            //PopulateBenefitData(context);
+            //PopulateEventTypeData(context);
+            //PopulateEventData(context);
+            //PopulateEmployerPlanData(context);
+            //PopulateEmployeeData(context);
 
         }
 
@@ -38,15 +35,15 @@ namespace APISMARTHR1
                     EmployeeCount = 2013,
                     EmployerRevenue = 201300,
                     BillingRate = 20.13m,
-                    PostalAddress1 = "",
-                    PostalAddress2 = "",
-                    PostalAddressCity = "",
-                    PostalAddressState = "",
-                    PostalAddressZip = 0,
-                    PostalAddressCountry = "",
-                    EmployerEmail = "",
-                    EmployerPhone = 0,
-                    EmployerFax = 0,
+                    //PostalAddress1 = "",
+                    //PostalAddress2 = "",
+                    //PostalAddressCity = "",
+                    //PostalAddressState = "",
+                    //PostalAddressZip = 0,
+                    //PostalAddressCountry = "",
+                    //EmployerEmail = "",
+                    //EmployerPhone = 0,
+                    //EmployerFax = 0,
                     OriginCountryFlagImageUrl = "",
                     EmployerImageUrl = "https://openclipart.org/download/194073/yellow-banana-cluster.svg",
                     EmployerRating = 5
@@ -59,15 +56,15 @@ namespace APISMARTHR1
                     EmployeeCount = 2012,
                     EmployerRevenue = 201200,
                     BillingRate = 20.12m,
-                    PostalAddress1 = "",
-                    PostalAddress2 = "",
-                    PostalAddressCity = "",
-                    PostalAddressState = "",
-                    PostalAddressZip = 0,
-                    PostalAddressCountry = "",
-                    EmployerEmail = "",
-                    EmployerPhone = 0,
-                    EmployerFax = 0,
+                    //PostalAddress1 = "",
+                    //PostalAddress2 = "",
+                    //PostalAddressCity = "",
+                    //PostalAddressState = "",
+                    //PostalAddressZip = 0,
+                    //PostalAddressCountry = "",
+                    //EmployerEmail = "",
+                    //EmployerPhone = 0,
+                    //EmployerFax = 0,
                     OriginCountryFlagImageUrl = "",
                     EmployerImageUrl = "https://openclipart.org/download/22871/chovynz-Pineapple-Icon.svg",
                     EmployerRating = 4
@@ -80,15 +77,15 @@ namespace APISMARTHR1
                     EmployeeCount = 2016,
                     EmployerRevenue = 201600,
                     BillingRate = 20.16m,
-                    PostalAddress1 = "",
-                    PostalAddress2 = "",
-                    PostalAddressCity = "",
-                    PostalAddressState = "",
-                    PostalAddressZip = 0 ,
-                    PostalAddressCountry = "",
-                    EmployerEmail = "",
-                    EmployerPhone = 0,
-                    EmployerFax = 0,
+                    //PostalAddress1 = "",
+                    //PostalAddress2 = "",
+                    //PostalAddressCity = "",
+                    //PostalAddressState = "",
+                    //PostalAddressZip = 0 ,
+                    //PostalAddressCountry = "",
+                    //EmployerEmail = "",
+                    //EmployerPhone = 0,
+                    //EmployerFax = 0,
                     OriginCountryFlagImageUrl = "",
                     EmployerImageUrl = "https://openclipart.org/download/209684/food-strawberry.svg",
                     EmployerRating = 4,
@@ -196,21 +193,21 @@ namespace APISMARTHR1
                 {
                     EventName = "EE1-EV1",
                     EventDescription = "EE1 Import",
-                    EmployerID = 1,
+                    //EmployerID = 1,
                     EventType = context.EventType.Where(e => e.EventTypeID == 1).FirstOrDefault(),
                 },
                 new Event()
                 {
                     EventName = "EE1-EV2",
                     EventDescription = "EE1 NewHire",
-                    EmployerID = 1,
+                    //EmployerID = 1,
                     EventType = context.EventType.Where(e => e.EventTypeID == 2).FirstOrDefault(),
                 },
                 new Event()
                 {
                     EventName = "EE1-EV3",
                     EventDescription = "EE1 OpenEnrollment",
-                    EmployerID = 1,
+                    //EmployerID = 1,
                     EventType = context.EventType.Where(e => e.EventTypeID == 3).FirstOrDefault(),
                 },
             };
@@ -347,22 +344,22 @@ namespace APISMARTHR1
                 new Employee()
                 {
                     EmployeeCode = "john_keep",
-                    EmployerID= 1,
+                    //EmployerID= 1,
                 },
                 new Employee()
                 {
                     EmployeeCode = "maggie_mars",
-                    EmployerID= 1,
+                    //EmployerID= 1,
                 },
                 new Employee()
                 {
                     EmployeeCode = "churio_frito",
-                    EmployerID= 2,
+                    //EmployerID= 2,
                 },
                 new Employee()
                 {
                     EmployeeCode = "yummy_tummy",
-                    EmployerID= 2,
+                    //EmployerID= 2,
                 },
             };
             context.Employee.AddRange(employeeList);

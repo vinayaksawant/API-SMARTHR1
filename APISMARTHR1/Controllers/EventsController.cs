@@ -71,14 +71,14 @@ namespace APISMARTHR1.Controllers
             }
 
 
-            if (_context.Event.Where(e => e.EmployerID == @event.EmployerID)
-                                .Where(et => et.EventType.EventTypeID == @event.EventType.EventTypeID)
-                                .Any()
-                                )
-            {
-                ModelState.AddModelError("DuplicateEntry", $"Combination of Employer {@event.EmployerID} and EventTypeID {@event.EventType.EventTypeID} Already Present");
-                return BadRequest(ModelState);
-            }
+            //if (_context.Event.Where(e => e.EmployerID == @event.EmployerID)
+            //                    .Where(et => et.EventType.EventTypeID == @event.EventType.EventTypeID)
+            //                    .Any()
+            //                    )
+            //{
+            //    ModelState.AddModelError("DuplicateEntry", $"Combination of Employer {@event.EmployerID} and EventTypeID {@event.EventType.EventTypeID} Already Present");
+            //    return BadRequest(ModelState);
+            //}
 
             //_context.Entry(@event).State = EntityState.Modified;
             _context.Attach(@event);
@@ -116,14 +116,14 @@ namespace APISMARTHR1.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (_context.Event.Where(e => e.EmployerID == @event.EmployerID)
-                                .Where(et => et.EventType.EventTypeID == @event.EventType.EventTypeID)
-                                .Any()
-                                )
-            {
-                ModelState.AddModelError("DuplicateEntry", $"Combination of Employer {@event.EmployerID} and EventTypeID {@event.EventType.EventTypeID} Already Present");
-                return BadRequest(ModelState);
-            }
+            //if (_context.Event.Where(e => e.EmployerID == @event.EmployerID)
+            //                    .Where(et => et.EventType.EventTypeID == @event.EventType.EventTypeID)
+            //                    .Any()
+            //                    )
+            //{
+            //    ModelState.AddModelError("DuplicateEntry", $"Combination of Employer {@event.EmployerID} and EventTypeID {@event.EventType.EventTypeID} Already Present");
+            //    return BadRequest(ModelState);
+            //}
 
 
             @event.EventType = _context.EventType.Find(@event.EventType.EventTypeID);

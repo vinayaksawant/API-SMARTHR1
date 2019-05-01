@@ -148,6 +148,62 @@
 			]
 		},
 		{
+			"id": "42dfd358-c203-4303-83fb-0ea23b2cc42b",
+			"name": "Employers_Entity",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"variables": [],
+			"order": [
+				"165eb650-5b0f-4a59-8090-dcdb59daab26",
+				"4bc6960d-bdf6-4572-b722-2dd1cc66c36d"
+			],
+			"folders_order": [],
+			"folders": [],
+			"requests": [
+				{
+					"id": "165eb650-5b0f-4a59-8090-dcdb59daab26",
+					"name": "EmployersGetAll",
+					"url": "https://localhost:44373/api/Employers",
+					"description": "EmployersGetAll",
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "42dfd358-c203-4303-83fb-0ea23b2cc42b",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "4bc6960d-bdf6-4572-b722-2dd1cc66c36d",
+					"name": "EmployersGetByID",
+					"url": "https://localhost:44373/api/Employers/1",
+					"description": "EmployersGetAll",
+					"data": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "42dfd358-c203-4303-83fb-0ea23b2cc42b",
+					"headers": "",
+					"pathVariables": {}
+				}
+			]
+		},
+		{
 			"id": "44ab90ae-5e57-47d5-b06f-1abb4d9b483a",
 			"name": "EmployerPlans",
 			"description": "",
@@ -300,14 +356,14 @@
 					"currentHelper": null,
 					"helperAttributes": null,
 					"collectionId": "bd8feb7e-5332-4ff6-ab85-3e8f4b874732",
-					"rawModeData": "{\n    \"employeeName\": \"kelly kucco\",\n    \"employerID\": 1\n}",
+					"rawModeData": "{\n    \"employeeCode\": \"jim_mortenson\",\n    \"employerID\": 3\n}",
 					"headers": "Content-Type: application/json\n",
 					"pathVariables": {}
 				},
 				{
 					"id": "a1e2b655-419b-4ebd-af02-d1d1579d113b",
 					"name": "EmployeesPut",
-					"url": "https://localhost:44373/api/Employees/5",
+					"url": "https://localhost:44373/api/Employees/7",
 					"description": "EmployeeEntityPut",
 					"data": [],
 					"dataMode": "raw",
@@ -329,7 +385,7 @@
 					"currentHelper": null,
 					"helperAttributes": null,
 					"collectionId": "bd8feb7e-5332-4ff6-ab85-3e8f4b874732",
-					"rawModeData": "{\n    \"EmployeeID\": 5,\n    \"EmployeeName\": \"missy jordan1\",\n    \"EmployerID\": 1\n}",
+					"rawModeData": "{\n    \"EmployeeID\": 7,\n    \"EmployeeCode\": \"Jim_Mortenson\",\n    \"EmployerID\": 1\n}",
 					"headers": "Content-Type: application/json\n",
 					"pathVariables": {}
 				},
@@ -356,7 +412,7 @@
 				{
 					"id": "fef5a89d-d9e7-4bd8-8a0f-3f8fdf032c2f",
 					"name": "EmployeesGetByID",
-					"url": "https://localhost:44373/api/employees/5",
+					"url": "https://localhost:44373/api/employees/7",
 					"description": "Get all employees",
 					"data": null,
 					"dataMode": null,
@@ -469,7 +525,7 @@
 	],
 	"environments": [
 		{
-			"id": "0e405429-c28a-491a-a33a-9ebf9aae940e",
+			"id": "46ebcfa6-88d1-4396-a7f3-5f36fefbacf5",
 			"name": "My Workspace - globals",
 			"values": []
 		}
