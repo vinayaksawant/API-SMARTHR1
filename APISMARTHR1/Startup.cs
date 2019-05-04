@@ -71,7 +71,7 @@ namespace APISMARTHR1
                 app.UseHsts();
             }
 
-            //employerContext.EnsureSeedDataForContext();
+            employerContext.EnsureSeedDataForContext();
 
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();

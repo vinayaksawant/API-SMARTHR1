@@ -38,5 +38,6 @@ namespace APISMARTHR1.Entities
         public DbSet<DependentEvent> DependentEvent { get; set; }
         public DbSet<BeneficiaryEvent> BeneficiaryEvent { get; set; }
         public DbSet<CoverageEvent> CoverageEvent { get; set; }
+
     }
 }
