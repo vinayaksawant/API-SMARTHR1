@@ -13,31 +13,31 @@ namespace APISMARTHR1
         {
             #region reseeddata
             string SQLRESEEDTables = "" +
-                                      //"DBCC CheckIDENT ('Employer',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Benefit',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('EventType',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Relationship',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('AddressType',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('EmailType',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('PhoneType',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Address',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Email',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Phone',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('EmployerPlan',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Event',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('LifeEvent',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Employee',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Dependent',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('Beneficiary',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('EmployeeEvent',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('DependentEvent',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('BeneficiaryEvent',RESEED,0);" +
-                                      //"DBCC CheckIDENT ('CoverageEvent',RESEED,0);" +
-                                      "";
+                                            //"DBCC CheckIDENT ('Employer',RESEED,0);" +
+                                            //"DBCC CheckIDENT ('Benefit',RESEED,0);" +
+                                            //"DBCC CheckIDENT ('EventType',RESEED,0);" +
+                                            //"DBCC CheckIDENT ('Relationship',RESEED,0);" +
+                                            //"DBCC CheckIDENT ('AddressType',RESEED,0);" +
+                                            //"DBCC CheckIDENT ('EmailType',RESEED,0);" +
+                                            //"DBCC CheckIDENT ('PhoneType',RESEED,0);" +
+                                            "DBCC CheckIDENT ('Address',RESEED,0);" +
+                                            "DBCC CheckIDENT ('Email',RESEED,0);" +
+                                            "DBCC CheckIDENT ('Phone',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('EmployerPlan',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Event',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Employee',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Dependent',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Beneficiary',RESEED,0);" +
+                                          "DBCC CheckIDENT ('LifeEvent',RESEED,0);" +
+                                          "DBCC CheckIDENT ('EmployeeEvent',RESEED,0);" +
+                                          "DBCC CheckIDENT ('DependentEvent',RESEED,0);" +
+                                          "DBCC CheckIDENT ('BeneficiaryEvent',RESEED,0);" +
+                                          "DBCC CheckIDENT ('CoverageEvent',RESEED,0);" +
+                                          "";
             #endregion reseeddata
 
-            context.Database.ExecuteSqlCommand(SQLRESEEDTables);
-            context.SaveChanges();
+            //context.Database.ExecuteSqlCommand(SQLRESEEDTables);
+            //context.SaveChanges();
 
             PopulateEmployerData(context);
             AddAddressForEmployerData(context);
@@ -146,12 +146,12 @@ namespace APISMARTHR1
                 new Address()
                 {
                     AddressType= adrType,
-                    PostalAddress1 = "",
-                    PostalAddress2 = "",
-                    PostalAddressCity = "",
-                    PostalAddressState = "",
-                    PostalAddressZip = 0 ,
-                    PostalAddressCountry = "",
+                    PostalAddress1 = AddressFor + " " + "123 Prairie Center Drive",
+                    PostalAddress2 = AddressFor + " " + "Apt # 3120",
+                    PostalAddressCity = AddressFor + " " + "Edina",
+                    PostalAddressState = "MN",
+                    PostalAddressZip = 55436 ,
+                    PostalAddressCountry = "USA",
                 }
             };
         }
@@ -161,12 +161,29 @@ namespace APISMARTHR1
                                     .Where(i => i.PhoneTypeCode.ToUpper() == PhoneType.ToUpper())
                                     .FirstOrDefault();
 
+            string phone = "000-000-0000";
+            switch (AddressFor)
+            {
+                case "Employer":
+                    phone = "111-111-1111";
+                    break;
+                case "Employee":
+                    phone = "222-222-2222";
+                    break;
+                case "Dependent":
+                    phone = "333-333-3333";
+                    break;
+                case "Beneficiary":
+                    phone = "444-444-4444";
+                    break;
+            };
+
             return new List<Phone>()
             {
                 new Phone()
                 {
                     PhoneType= phoneType,
-                    PhoneNumber= ""
+                    PhoneNumber= phone
                 }
             };
         }
@@ -176,12 +193,29 @@ namespace APISMARTHR1
                                     .Where(i => i.EmailTypeCode.ToUpper() == EmailType.ToUpper())
                                     .FirstOrDefault();
 
+            string email = "generic@generic.com";
+            switch (AddressFor)
+            {
+                case "Employer":
+                    email = "employer@employer.com";
+                    break;
+                case "Employee":
+                    email = "employee@employee.com";
+                    break;
+                case "Dependent":
+                    email = "dependent@dependent.com";
+                    break;
+                case "Beneficiary":
+                    email = "beneficiary@beneficiary.com";
+                    break;
+            };
+
             return new List<Email>()
             {
                 new Email()
                 {
                     EmailType= emailType,
-                    EmailAddress = ""
+                    EmailAddress = email
                 }
             };
         }
@@ -604,7 +638,6 @@ namespace APISMARTHR1
                         }
                 };
 
-            /*
             var dependent1 = context.Dependent.Where(d => d.DependentCode.ToUpper() == "JOHN_KEEP_DEP1").FirstOrDefault();
             var relationshipChild = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "CHILD").FirstOrDefault();
             var dependentEvent1 = new List<DependentEvent>() {
@@ -637,7 +670,7 @@ namespace APISMARTHR1
                         BeneficiaryPhone = GeneratePhone(context, "Home", "Beneficiary"),
                     }
             };
-            */
+
             var lifeevent1 = new LifeEvent()
             {
                 Event = er_event,
@@ -646,8 +679,8 @@ namespace APISMARTHR1
             };
 
             lifeevent1.EmployeeEvent = employeeEvent1;
-            //lifeevent1.DependentEvent = dependentEvent1;
-            //lifeevent1.BeneficiaryEvent = beneficiaryEvent1;
+            lifeevent1.DependentEvent = dependentEvent1;
+            lifeevent1.BeneficiaryEvent = beneficiaryEvent1;
 
             employee1.LifeEvent.Add(lifeevent1);
 
