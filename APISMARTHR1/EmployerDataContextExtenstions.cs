@@ -12,32 +12,35 @@ namespace APISMARTHR1
         public static void EnsureSeedDataForContext(this EmployerContext context)
         {
             #region reseeddata
-            string SQLRESEEDTables = "DBCC CheckIDENT ('Employer',RESEED,0);" +
+            string SQLRESEEDTables = "" +
+                                      //"DBCC CheckIDENT ('Employer',RESEED,0);" +
                                       //"DBCC CheckIDENT ('Benefit',RESEED,0);" +
                                       //"DBCC CheckIDENT ('EventType',RESEED,0);" +
                                       //"DBCC CheckIDENT ('Relationship',RESEED,0);" +
                                       //"DBCC CheckIDENT ('AddressType',RESEED,0);" +
                                       //"DBCC CheckIDENT ('EmailType',RESEED,0);" +
                                       //"DBCC CheckIDENT ('PhoneType',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Address',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Email',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Phone',RESEED,0);" +
-                                      "DBCC CheckIDENT ('EmployerPlan',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Event',RESEED,0);" +
-                                      "DBCC CheckIDENT ('LifeEvent',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Employee',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Dependent',RESEED,0);" +
-                                      "DBCC CheckIDENT ('Beneficiary',RESEED,0);" +
-                                      "DBCC CheckIDENT ('EmployeeEvent',RESEED,0);" +
-                                      "DBCC CheckIDENT ('DependentEvent',RESEED,0);" +
-                                      "DBCC CheckIDENT ('BeneficiaryEvent',RESEED,0);" +
-                                      "DBCC CheckIDENT ('CoverageEvent',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Address',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Email',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Phone',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('EmployerPlan',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Event',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('LifeEvent',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Employee',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Dependent',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('Beneficiary',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('EmployeeEvent',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('DependentEvent',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('BeneficiaryEvent',RESEED,0);" +
+                                      //"DBCC CheckIDENT ('CoverageEvent',RESEED,0);" +
                                       "";
             #endregion reseeddata
 
             context.Database.ExecuteSqlCommand(SQLRESEEDTables);
+            context.SaveChanges();
 
             PopulateEmployerData(context);
+            AddAddressForEmployerData(context);
             PopulateBenefitData(context);
             PopulateEventTypeData(context);
             PopulateAddressTypeData(context);
@@ -49,6 +52,8 @@ namespace APISMARTHR1
             PopulateEmployerPlanData(context);
 
             PopulateEmployeeData(context);
+
+            PopulateLifeEventData(context);
         }
         public static void PopulateEmployerData(this EmployerContext context)
         {
@@ -61,7 +66,7 @@ namespace APISMARTHR1
                 new Employer()
                 {
                     EmployerName = "Gargi world wide",
-                    EmployerCode = "SMART-HR-2",
+                    EmployerCode = "SMART-HR-1",
                     StartDate = Convert.ToDateTime("01/01/2013"),
                     EmployeeCount = 2013,
                     EmployerRevenue = 201300,
@@ -76,7 +81,7 @@ namespace APISMARTHR1
                 new Employer
                 {
                     EmployerName = "Sharvil Import Exports",
-                    EmployerCode = "SMART-HR-4",
+                    EmployerCode = "SMART-HR-2",
                     StartDate = Convert.ToDateTime("01/01/2012"),
                     EmployeeCount = 2012,
                     EmployerRevenue = 201200,
@@ -91,7 +96,7 @@ namespace APISMARTHR1
                 new Employer()
                 {
                     EmployerName = "Shurya Business Intelligence",
-                    EmployerCode = "SMART-HR-5",
+                    EmployerCode = "SMART-HR-3",
                     StartDate = Convert.ToDateTime("01/01/2016"),
                     EmployeeCount = 2016,
                     EmployerRevenue = 201600,
@@ -107,6 +112,29 @@ namespace APISMARTHR1
             context.Employer.AddRange(employerList);
             context.SaveChanges();
         }
+
+        public static void AddAddressForEmployerData(this EmployerContext context)
+        {
+            if (context.Employer.Any())
+            {
+                var employer1 = context.Employer.Where(e => e.EmployerCode == "SMART-HR-1").FirstOrDefault();
+                employer1.EmployerAddress = GenerateAddress(context, "Home", "Employer");
+                employer1.EmployerPhone = GeneratePhone(context, "Home", "Employer");
+                employer1.EmployerEmail = GenerateEmail(context, "Home", "Employer");
+
+                var employer2 = context.Employer.Where(e => e.EmployerCode == "SMART-HR-2").FirstOrDefault();
+                employer2.EmployerAddress = GenerateAddress(context, "Home", "Employer");
+                employer2.EmployerPhone = GeneratePhone(context, "Home", "Employer");
+                employer2.EmployerEmail = GenerateEmail(context, "Home", "Employer");
+
+                var employer3 = context.Employer.Where(e => e.EmployerCode == "SMART-HR-3").FirstOrDefault();
+                employer3.EmployerAddress = GenerateAddress(context, "Home", "Employer");
+                employer3.EmployerPhone = GeneratePhone(context, "Home", "Employer");
+                employer3.EmployerEmail = GenerateEmail(context, "Home", "Employer");
+            }
+            context.SaveChanges();
+        }
+
         static IList<Address> GenerateAddress(this EmployerContext context,string AddressType , string AddressFor)
         {
             AddressType adrType = context.AddressType
@@ -336,19 +364,22 @@ namespace APISMARTHR1
             {
                 new Event()
                 {
-                    EventName = "EE1-EV1",
+                    EventCode = "EE1-EV1",
+                    EventName = "Import",
                     EventDescription = "EE1 Import",
                     EventType = context.EventType.Where(e => e.EventTypeID == 1).FirstOrDefault(),
                 },
                 new Event()
                 {
-                    EventName = "EE1-EV2",
+                    EventCode = "EE1-EV2",
+                    EventName = "NewHire",
                     EventDescription = "EE1 NewHire",
                     EventType = context.EventType.Where(e => e.EventTypeID == 2).FirstOrDefault(),
                 },
                 new Event()
                 {
-                    EventName = "EE1-EV3",
+                    EventCode = "EE1-EV3",
+                    EventName = "OpenEnrollment",
                     EventDescription = "EE1 OpenEnrollment",
                     EventType = context.EventType.Where(e => e.EventTypeID == 3).FirstOrDefault(),
                 },
@@ -509,7 +540,7 @@ namespace APISMARTHR1
                         {
                             new Beneficiary()
                             {
-                                BeneficiaryCode = "john_keep_benf1"
+                                BeneficiaryCode = "john_keep_benef1"
                             }
                         }
                 },
@@ -528,7 +559,7 @@ namespace APISMARTHR1
                         {
                             new Beneficiary()
                             {
-                                BeneficiaryCode = "maggie_mars_benf1"
+                                BeneficiaryCode = "maggie_mars_benef1"
                             }
                         }
                 },
@@ -541,6 +572,86 @@ namespace APISMARTHR1
 
             }
              context.SaveChanges();
+        }
+
+        public static void PopulateLifeEventData(this EmployerContext context)
+        {
+            if (context.LifeEvent.Any())
+            {
+                return;
+            }
+            var er_event = context.Event.Where(e => e.EventCode.ToUpper() == "EE1-EV1").FirstOrDefault();
+
+            var employee1 = context.Employee.Where(e => e.EmployeeCode.ToUpper() == "JOHN_KEEP").FirstOrDefault();
+            var relationshipSelf = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "SELF").FirstOrDefault();
+            var employeeEvent1 =
+                new List<EmployeeEvent>() {
+                        new EmployeeEvent(){
+                            Employee = employee1,
+                            EmployeeCode = employee1.EmployeeCode,
+                            EmployeeFirstName = "John",
+                            EmployeeMiddleName ="s",
+                            EmployeeLastName = "Keep",
+                            EmployeeDepartment = "Finance",
+                            DateOfBirth = new DateTime(1991,01,01),
+                            Relationship = relationshipSelf,
+                            HireDate = new DateTime(2001,01,01),
+                            TerminationDate = DateTime.MaxValue,
+                            RetirementDate = DateTime.MaxValue,
+                            EmployeeAddress = GenerateAddress(context,"Home","Employee"),
+                            EmployeePhone = GeneratePhone(context,"Home","Employee"),
+                            EmployeeEmail = GenerateEmail(context,"Home","Employee"),
+                        }
+                };
+
+            /*
+            var dependent1 = context.Dependent.Where(d => d.DependentCode.ToUpper() == "JOHN_KEEP_DEP1").FirstOrDefault();
+            var relationshipChild = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "CHILD").FirstOrDefault();
+            var dependentEvent1 = new List<DependentEvent>() {
+                    new DependentEvent(){
+                        Dependent = dependent1,
+                        DependentCode = dependent1.DependentCode,
+                        DependentFirstName = "John_dep1",
+                        DependentMiddleName = "J",
+                        DependentLastName = "Keep",
+                        DateOfBirth = new DateTime(2011, 01, 01),
+                        Relationship = relationshipChild,
+                        DependentAddress = GenerateAddress(context, "Home", "Dependent"),
+                        DependentEmail = GenerateEmail(context,"Home","Dependent"),
+                        DependentPhone = GeneratePhone(context, "Home", "Dependent"),
+                    }
+            };
+
+            var beneficiary1 = context.Beneficiary.Where(e => e.BeneficiaryCode.ToUpper() == "JOHN_KEEP_BENEF1").FirstOrDefault();
+            var beneficiaryEvent1 = new List<BeneficiaryEvent>() {
+                    new BeneficiaryEvent(){
+                        Beneficiary = beneficiary1,
+                        BeneficiaryCode = beneficiary1.BeneficiaryCode,
+                        BeneficiaryFirstName = "John_bene1",
+                        BeneficiaryMiddleName ="J",
+                        BeneficiaryLastName = "Keep",
+                        DateOfBirth = new DateTime(2011, 01, 01),
+                        Relationship = relationshipChild,
+                        BeneficiaryAddress = GenerateAddress(context, "Home", "Beneficiary"),
+                        BeneficiaryEmail = GenerateEmail(context, "Home", "Beneficiary"),
+                        BeneficiaryPhone = GeneratePhone(context, "Home", "Beneficiary"),
+                    }
+            };
+            */
+            var lifeevent1 = new LifeEvent()
+            {
+                Event = er_event,
+                LifeEventDate = System.DateTime.Today,
+                LifeEventComment = "This is new LifeEvent",
+            };
+
+            lifeevent1.EmployeeEvent = employeeEvent1;
+            //lifeevent1.DependentEvent = dependentEvent1;
+            //lifeevent1.BeneficiaryEvent = beneficiaryEvent1;
+
+            employee1.LifeEvent.Add(lifeevent1);
+
+            context.SaveChanges();
         }
     }
 }
