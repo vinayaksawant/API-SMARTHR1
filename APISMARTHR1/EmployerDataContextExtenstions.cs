@@ -20,19 +20,19 @@ namespace APISMARTHR1
                                             //"DBCC CheckIDENT ('AddressType',RESEED,0);" +
                                             //"DBCC CheckIDENT ('EmailType',RESEED,0);" +
                                             //"DBCC CheckIDENT ('PhoneType',RESEED,0);" +
-                                            "DBCC CheckIDENT ('Address',RESEED,0);" +
-                                            "DBCC CheckIDENT ('Email',RESEED,0);" +
-                                            "DBCC CheckIDENT ('Phone',RESEED,0);" +
-                                          //"DBCC CheckIDENT ('EmployerPlan',RESEED,0);" +
-                                          //"DBCC CheckIDENT ('Event',RESEED,0);" +
-                                          //"DBCC CheckIDENT ('Employee',RESEED,0);" +
-                                          //"DBCC CheckIDENT ('Dependent',RESEED,0);" +
-                                          //"DBCC CheckIDENT ('Beneficiary',RESEED,0);" +
-                                          "DBCC CheckIDENT ('LifeEvent',RESEED,0);" +
-                                          "DBCC CheckIDENT ('EmployeeEvent',RESEED,0);" +
-                                          "DBCC CheckIDENT ('DependentEvent',RESEED,0);" +
-                                          "DBCC CheckIDENT ('BeneficiaryEvent',RESEED,0);" +
-                                          "DBCC CheckIDENT ('CoverageEvent',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Address',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Email',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('Phone',RESEED,0);" +
+                                          ////"DBCC CheckIDENT ('EmployerPlan',RESEED,0);" +
+                                          ////"DBCC CheckIDENT ('Event',RESEED,0);" +
+                                          ////"DBCC CheckIDENT ('Employee',RESEED,0);" +
+                                          ////"DBCC CheckIDENT ('Dependent',RESEED,0);" +
+                                          ////"DBCC CheckIDENT ('Beneficiary',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('LifeEvent',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('EmployeeEvent',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('DependentEvent',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('BeneficiaryEvent',RESEED,0);" +
+                                          //"DBCC CheckIDENT ('CoverageEvent',RESEED,0);" +
                                           "";
             #endregion reseeddata
 
@@ -40,19 +40,16 @@ namespace APISMARTHR1
             //context.SaveChanges();
 
             PopulateEmployerData(context);
-            AddAddressForEmployerData(context);
+            //AddAddressForEmployerData(context);
             PopulateBenefitData(context);
             PopulateEventTypeData(context);
             PopulateAddressTypeData(context);
             PopulateEmailTypeData(context);
             PopulatePhoneTypeData(context);
             PopulateRelationshipData(context);
-
             PopulateEventData(context);
             PopulateEmployerPlanData(context);
-
             PopulateEmployeeData(context);
-
             PopulateLifeEventData(context);
         }
         public static void PopulateEmployerData(this EmployerContext context)

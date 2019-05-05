@@ -53,6 +53,8 @@ namespace APISMARTHR1
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Entities.Employer, DTO.Employer_DTO>();
+
+                cfg.CreateMap<Entities.EmployeeEvent, DTO.Employee_DTO>(AutoMapper.MemberList.None);
             });
         }
 
@@ -70,9 +72,7 @@ namespace APISMARTHR1
             {
                 app.UseHsts();
             }
-
-            employerContext.EnsureSeedDataForContext();
-
+            //employerContext.EnsureSeedDataForContext();
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
 
