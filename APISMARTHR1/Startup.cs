@@ -55,6 +55,16 @@ namespace APISMARTHR1
                 cfg.CreateMap<Entities.Employer, DTO.Employer_DTO>();
 
                 cfg.CreateMap<Entities.EmployeeEvent, DTO.Employee_DTO>(AutoMapper.MemberList.None);
+
+                cfg.CreateMap<Entities.Address, DTO.Address_DTO>()
+                .ForMember("AddressType",opt => opt.MapFrom(src => src.AddressType.AddressTypeCode));
+
+                cfg.CreateMap<Entities.Email, DTO.Email_DTO>()
+                .ForMember("EmailType", opt => opt.MapFrom(src => src.EmailType.EmailTypeCode));
+
+                cfg.CreateMap<Entities.Phone, DTO.Phone_DTO>()
+                .ForMember("PhoneType", opt => opt.MapFrom(src => src.PhoneType.PhoneTypeCode));
+
             });
         }
 

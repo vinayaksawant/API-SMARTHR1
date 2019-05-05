@@ -26,25 +26,26 @@ namespace APISMARTHR1.Controllers
         [HttpGet]
         public IActionResult GetEmployee()
         {
-            //var employee = await _context.EmployeeEvent.FindAsync(id);
-            var employee_entity = _context.EmployeeEvent.GroupBy(e => e.Employee.EmployeeID).ToList();
-
             var employee_Entity1 = from x in _context.EmployeeEvent
+                                   .Include(a => a.EmployeeAddress)
+                                    .Include("EmployeeAddress.AddressType")
+                                   .Include(e => e.EmployeeEmail)
+                                    .Include("EmployeeEmail.EmailType")
+                                   .Include(p => p.EmployeePhone)
+                                    .Include("EmployeePhone.PhoneType")
                                    group x by x.Employee.EmployeeID into g
                                    orderby g.Key
-                                   select g.OrderByDescending(z => z.EmployeeEventID)
-                                   .FirstOrDefault();
+                                   select g.OrderByDescending(z => z.EmployeeEventID).FirstOrDefault();
+
 
             IList<Employee_DTO> employee_DTO = new List<Employee_DTO>();
 
             foreach (EmployeeEvent e in employee_Entity1)
             {
                 var employee_DTO_single = Mapper.Map<Employee_DTO>(e);
-
                 employee_DTO.Add(employee_DTO_single);
             };
 
-            //var employee_DTO = Mapper.Map<IList<Employee_DTO>>(employee_entity);
             if (employee_DTO == null)
             {
                 return NotFound();
