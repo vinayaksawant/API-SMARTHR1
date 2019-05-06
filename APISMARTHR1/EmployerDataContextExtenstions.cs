@@ -39,19 +39,24 @@ namespace APISMARTHR1
             //context.Database.ExecuteSqlCommand(SQLRESEEDTables);
             //context.SaveChanges();
 
-            PopulateEmployerData(context);
-            //AddAddressForEmployerData(context);
-            PopulateBenefitData(context);
-            PopulateEventTypeData(context);
-            PopulateAddressTypeData(context);
-            PopulateEmailTypeData(context);
-            PopulatePhoneTypeData(context);
-            PopulateRelationshipData(context);
-            PopulateEventData(context);
-            PopulateEmployerPlanData(context);
-            PopulateEmployeeData(context);
-            PopulateLifeEventData(context);
+
+            //PopulateEmployerData(context);
+            ////AddAddressForEmployerData(context);
+            //PopulateBenefitData(context);
+            //PopulateEventTypeData(context);
+            //PopulateAddressTypeData(context);
+            //PopulateEmailTypeData(context);
+            //PopulatePhoneTypeData(context);
+            //PopulateRelationshipData(context);
+            //PopulateEventData(context);
+            //PopulateEmployerPlanData(context);
+            //PopulateEmployeeData(context);
+            //PopulateLifeEventData(context);
+            //PopulateLifeEventDataFor2ndEmployee(context);
+            //Populate2ndLifeEventDataForFirstEmployee(context);
+            //Populate2ndLifeEventDataForFirstEmployee(context);
         }
+
         public static void PopulateEmployerData(this EmployerContext context)
         {
             if (context.Employer.Any())
@@ -605,7 +610,7 @@ namespace APISMARTHR1
              context.SaveChanges();
         }
 
-        public static void PopulateLifeEventData(this EmployerContext context)
+        public static void PopulateLifeEventDataBasic(this EmployerContext context)
         {
             if (context.LifeEvent.Any())
             {
@@ -683,5 +688,172 @@ namespace APISMARTHR1
 
             context.SaveChanges();
         }
+
+        public static void PopulateLifeEventDataFor2ndEmployee(this EmployerContext context)
+        {
+            var MaggieLifeEvent = context.Employee.Where(e => e.EmployeeCode.ToUpper() == "MAGGIE_MARS").FirstOrDefault()
+                                    .LifeEvent.Any();
+
+            if (MaggieLifeEvent)
+            {
+                return;
+            }
+            var er_event = context.Event.Where(e => e.EventCode.ToUpper() == "EE1-EV1").FirstOrDefault();
+            var employee1 = context.Employee.Where(e => e.EmployeeCode.ToUpper() == "MAGGIE_MARS").FirstOrDefault();
+
+            var relationshipSelf = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "SELF").FirstOrDefault();
+            var employeeEvent1 =
+                new List<EmployeeEvent>() {
+                        new EmployeeEvent(){
+                            Employee = employee1,
+                            EmployeeCode = employee1.EmployeeCode,
+                            EmployeeFirstName = "Maggie",
+                            EmployeeMiddleName ="s",
+                            EmployeeLastName = "Mars",
+                            EmployeeDepartment = "Marketing",
+                            DateOfBirth = new DateTime(1993,01,01),
+                            Relationship = relationshipSelf,
+                            HireDate = new DateTime(2001,01,01),
+                            TerminationDate = DateTime.MaxValue,
+                            RetirementDate = DateTime.MaxValue,
+                            EmployeeAddress = GenerateAddress(context,"Home","Employee"),
+                            EmployeePhone = GeneratePhone(context,"Home","Employee"),
+                            EmployeeEmail = GenerateEmail(context,"Home","Employee"),
+                        }
+                };
+
+            var dependent1 = context.Dependent.Where(d => d.DependentCode.ToUpper() == "MAGGIE_MARS_DEP1").FirstOrDefault();
+            var relationshipChild = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "CHILD").FirstOrDefault();
+            var dependentEvent1 = new List<DependentEvent>() {
+                    new DependentEvent(){
+                        Dependent = dependent1,
+                        DependentCode = dependent1.DependentCode,
+                        DependentFirstName = "Maggie_dep1",
+                        DependentMiddleName = "m",
+                        DependentLastName = "Mars",
+                        DateOfBirth = new DateTime(2011, 01, 01),
+                        Relationship = relationshipChild,
+                        DependentAddress = GenerateAddress(context, "Home", "Dependent"),
+                        DependentEmail = GenerateEmail(context,"Home","Dependent"),
+                        DependentPhone = GeneratePhone(context, "Home", "Dependent"),
+                    }
+            };
+
+            var beneficiary1 = context.Beneficiary.Where(e => e.BeneficiaryCode.ToUpper() == "MAGGIE_MARS_BENEF1").FirstOrDefault();
+            var beneficiaryEvent1 = new List<BeneficiaryEvent>() {
+                    new BeneficiaryEvent(){
+                        Beneficiary = beneficiary1,
+                        BeneficiaryCode = beneficiary1.BeneficiaryCode,
+                        BeneficiaryFirstName = "Maggie_bene1",
+                        BeneficiaryMiddleName ="M",
+                        BeneficiaryLastName = "Mars",
+                        DateOfBirth = new DateTime(2011, 01, 01),
+                        Relationship = relationshipChild,
+                        BeneficiaryAddress = GenerateAddress(context, "Home", "Beneficiary"),
+                        BeneficiaryEmail = GenerateEmail(context, "Home", "Beneficiary"),
+                        BeneficiaryPhone = GeneratePhone(context, "Home", "Beneficiary"),
+                    }
+            };
+
+            var lifeevent1 = new LifeEvent()
+            {
+                Event = er_event,
+                LifeEventDate = System.DateTime.Today,
+                LifeEventComment = "Maggie Mars EE1 EV1 Import LifeEvent",
+            };
+
+            lifeevent1.EmployeeEvent = employeeEvent1;
+            lifeevent1.DependentEvent = dependentEvent1;
+            lifeevent1.BeneficiaryEvent = beneficiaryEvent1;
+
+            employee1.LifeEvent.Add(lifeevent1);
+
+            context.SaveChanges();
+        }
+
+        private static void Populate2ndLifeEventDataForFirstEmployee(EmployerContext context)
+        {
+            var MaggieLifeEvent = context.Employee.Where(e => e.EmployeeCode.ToUpper() == "MAGGIE_MARS").FirstOrDefault()
+                                    .LifeEvent.Where(le=>le.Event.EventCode.ToUpper() == "EE1-EV3")
+                                    .Any();
+
+            if (MaggieLifeEvent)
+            {
+                return;
+            }
+
+            var employee1 = context.Employee.Where(e => e.EmployeeCode.ToUpper() == "MAGGIE_MARS").FirstOrDefault();
+
+            var relationshipSelf = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "SELF").FirstOrDefault();
+            var employeeEvent1 =
+                new List<EmployeeEvent>() {
+                        new EmployeeEvent(){
+                            Employee = employee1,
+                            EmployeeCode = employee1.EmployeeCode,
+                            EmployeeFirstName = "Maggie_OE",
+                            EmployeeMiddleName ="s",
+                            EmployeeLastName = "Mars_OE",
+                            EmployeeDepartment = "Marketing",
+                            DateOfBirth = new DateTime(1993,01,01),
+                            Relationship = relationshipSelf,
+                            HireDate = new DateTime(2001,01,01),
+                            TerminationDate = DateTime.MaxValue,
+                            RetirementDate = DateTime.MaxValue,
+                            EmployeeAddress = GenerateAddress(context,"Home","Employee"),
+                            EmployeePhone = GeneratePhone(context,"Home","Employee"),
+                            EmployeeEmail = GenerateEmail(context,"Home","Employee"),
+                        }
+                };
+
+            var dependent1 = context.Dependent.Where(d => d.DependentCode.ToUpper() == "MAGGIE_MARS_DEP1").FirstOrDefault();
+            var relationshipChild = context.Relationship.Where(r => r.RelationshipCode.ToUpper() == "CHILD").FirstOrDefault();
+            var dependentEvent1 = new List<DependentEvent>() {
+                    new DependentEvent(){
+                        Dependent = dependent1,
+                        DependentCode = dependent1.DependentCode,
+                        DependentFirstName = "Maggie_dep1_OE",
+                        DependentMiddleName = "m",
+                        DependentLastName = "Mars_OE",
+                        DateOfBirth = new DateTime(2011, 01, 01),
+                        Relationship = relationshipChild,
+                        DependentAddress = GenerateAddress(context, "Home", "Dependent"),
+                        DependentEmail = GenerateEmail(context,"Home","Dependent"),
+                        DependentPhone = GeneratePhone(context, "Home", "Dependent"),
+                    }
+            };
+
+            var beneficiary1 = context.Beneficiary.Where(e => e.BeneficiaryCode.ToUpper() == "MAGGIE_MARS_BENEF1").FirstOrDefault();
+            var beneficiaryEvent1 = new List<BeneficiaryEvent>() {
+                    new BeneficiaryEvent(){
+                        Beneficiary = beneficiary1,
+                        BeneficiaryCode = beneficiary1.BeneficiaryCode,
+                        BeneficiaryFirstName = "Maggie_bene1_OE",
+                        BeneficiaryMiddleName ="M",
+                        BeneficiaryLastName = "Mars_OE",
+                        DateOfBirth = new DateTime(2011, 01, 01),
+                        Relationship = relationshipChild,
+                        BeneficiaryAddress = GenerateAddress(context, "Home", "Beneficiary"),
+                        BeneficiaryEmail = GenerateEmail(context, "Home", "Beneficiary"),
+                        BeneficiaryPhone = GeneratePhone(context, "Home", "Beneficiary"),
+                    }
+            };
+
+            var er_event = context.Event.Where(e => e.EventCode.ToUpper() == "EE1-EV3").FirstOrDefault();
+            var lifeevent1 = new LifeEvent()
+            {
+                Event = er_event,
+                LifeEventDate = System.DateTime.Today,
+                LifeEventComment = "Maggie Mars EE1 EV3 OpenEnrollment LifeEvent",
+            };
+
+            lifeevent1.EmployeeEvent = employeeEvent1;
+            lifeevent1.DependentEvent = dependentEvent1;
+            lifeevent1.BeneficiaryEvent = beneficiaryEvent1;
+
+            employee1.LifeEvent.Add(lifeevent1);
+
+            context.SaveChanges();
+        }
+
     }
 }
